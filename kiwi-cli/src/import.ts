@@ -23,7 +23,8 @@ function getMessagesToImport(file: string) {
       // 如换行符 \n，在 value 中占两个字符，需要转成真正的换行符。
       value = JSON.parse(`"${value}"`);
     } catch (e) {
-      throw new Error(`Illegal message: ${value}`);
+      console.log('eeee',e, key, value);
+      // throw new Error(`Illegal message: ${value}`);
     }
     return [key, value];
   });

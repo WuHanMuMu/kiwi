@@ -228,6 +228,7 @@ function replaceAndUpdate(filePath, arg, val, validateDuplicate) {
     // 若更新成功再替换代码
     return writeFile(filePath, newCode);
   } catch (e) {
+    // console.log(e);
     return Promise.reject(e.message);
   }
 }

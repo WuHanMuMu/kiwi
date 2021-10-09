@@ -4,10 +4,13 @@ Kiwi 的 CLI 工具
 
 ## 如何使用
 
-> yarn global add kiwi-clis
+> yarn global add wy-kiwi-clis
 
 > 推荐与[🐤 Kiwi-国际化全流程解决方案](https://github.com/alibaba/kiwi)结合使用
 
+
+修改了 extract 相关内容，去掉翻译相关的内容，直接使用uuid当做key
+修改了 translate 相关内容 出现报错时 允许继续下去
 ## CLI 参数
 
 ### kiwi `--init`

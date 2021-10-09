@@ -41,7 +41,7 @@ function translateTextByBaidu(text, toLang) {
           reject(err);
         });
     }),
-    3000
+    10000
   );
 }
 

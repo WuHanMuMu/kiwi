@@ -22,4 +22,21 @@ package-lock.json
 
 
 dist/
-kiwi-cli/dist
+kiwi-cli/dist/
+*/dist/
+
+
+kiwi-cli/dist/const.js
+kiwi-cli/dist/const.js.map
+kiwi-cli/dist/import.js
+kiwi-cli/dist/import.js.map
+kiwi-cli/dist/index.js
+kiwi-cli/dist/index.js.map
+kiwi-cli/dist/mock.js
+kiwi-cli/dist/mock.js.map
+kiwi-cli/dist/sync.js
+kiwi-cli/dist/sync.js.map
+kiwi-cli/dist/translate.js
+kiwi-cli/dist/translate.js.map
+kiwi-cli/dist/utils.js
+kiwi-cli/dist/utils.js.map
