@@ -21,7 +21,7 @@ const CONFIG = getProjectConfig();
  */
 function getSourceText() {
   const srcLangDir = getLangDir(CONFIG.srcLang);
-  const srcFile = path.resolve(srcLangDir, 'index.ts');
+  const srcFile = path.resolve(srcLangDir, 'index');
   const { default: texts } = require(srcFile);
 
   return texts;
@@ -32,7 +32,7 @@ function getSourceText() {
  */
 function getDistText(dstLang) {
   const distLangDir = getLangDir(dstLang);
-  const distFile = path.resolve(distLangDir, 'index.ts');
+  const distFile = path.resolve(distLangDir, 'index');
   let distTexts = {};
   if (fs.existsSync(distFile)) {
     distTexts = require(distFile).default;

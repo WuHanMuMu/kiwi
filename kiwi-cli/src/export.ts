@@ -15,9 +15,18 @@ import * as _ from 'lodash';
 function exportMessages(file?: string, lang?: string) {
   const CONFIG = getProjectConfig();
   const langs = lang ? [lang] : CONFIG.distLangs;
-
+  const allMessages = getAllMessages(CONFIG.srcLang);
+  const langsMessages = langs.filter(val => {return val != CONFIG.srcLang}).map(lang => {
+    return getAllMessages(lang);
+  })
+  const allTemplate = []
+  allTemplate.push(['key', CONFIG.srcLang, ...langs.filter(val => { return val != CONFIG.srcLang })]);
+  for (const key in allMessages) {
+    allTemplate.push([key, allMessages[key], ...langsMessages.map(val => val[key])]);
+  }
+  fs.writeFileSync('./export-all', tsvFormatRows(allTemplate));
   langs.map(lang => {
-    const allMessages = getAllMessages(CONFIG.srcLang);
+    
     const existingTranslations = getAllMessages(
       lang,
       (message, key) => !/[\u4E00-\u9FA5]/.test(allMessages[key]) || allMessages[key] !== message

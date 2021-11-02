@@ -9,6 +9,10 @@ Kiwi 的 CLI 工具
 > 推荐与[🐤 Kiwi-国际化全流程解决方案](https://github.com/alibaba/kiwi)结合使用
 
 
+强行修改了整体内容，使其支持jsx，但是需要把jsx 重命名为ts , 然后每次执行 命令前，需要将kiwi目录下的文件tsc 一波 
+```
+tsc .kiwi/*/*.ts
+```
 修改了 extract 相关内容，去掉翻译相关的内容，直接使用uuid当做key
 修改了 translate 相关内容 出现报错时 允许继续下去
 ## CLI 参数

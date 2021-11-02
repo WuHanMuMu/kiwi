@@ -23,10 +23,14 @@ function getTranslations(file, toLang) {
   const distLangDir = getLangDir(toLang);
   const srcFile = path.resolve(srcLangDir, file);
   const distFile = path.resolve(distLangDir, file);
-  const { default: texts } = require(srcFile);
+  console.log('requireing',srcFile, distFile)
+  // import * as x from srcFile;
+  // console.log(x)
+  const {default: texts} = require(srcFile.replace('.ts', ''));
+
   let distTexts;
   if (fs.existsSync(distFile)) {
-    distTexts = require(distFile).default;
+    distTexts = require(distFile.replace('.ts', '')).default;
   }
 
   traverse(texts, (text, path) => {
@@ -45,7 +49,7 @@ function writeTranslations(file, toLang, translations) {
   const fileNameWithoutExt = path.basename(file).split('.')[0];
   const srcLangDir = getLangDir(CONFIG.srcLang);
   const srcFile = path.resolve(srcLangDir, file);
-  const { default: texts } = require(srcFile);
+  const { default: texts } = require(srcFile.replace('.ts', ''));
   const rst = {};
 
   traverse(texts, (text, path) => {
@@ -60,6 +64,7 @@ function writeTranslations(file, toLang, translations) {
   return new Promise((resolve, reject) => {
     fs.writeFile(filePath, fileContent, err => {
       if (err) {
+      
         reject(err);
       } else {
         resolve();
@@ -90,9 +95,13 @@ function sync(callback?) {
   const srcLangDir = getLangDir(CONFIG.srcLang);
   fs.readdir(srcLangDir, (err, files) => {
     if (err) {
+     
       console.error(err);
     } else {
-      files = files.filter(file => file.endsWith('.ts') && file !== 'index.ts' && file !== 'mock.ts').map(file => file);
+   
+      files = files.filter(file => file.endsWith('.ts') 
+      && file !== 'index.ts' 
+      && file !== 'mock.ts').map(file => file);
       const translateFiles = toLang =>
         Promise.all(
           files.map(file => {
@@ -112,6 +121,7 @@ function sync(callback?) {
           callback && callback();
         },
         e => {
+         
           console.error(e);
           process.exit(1);
         }

@@ -91,7 +91,7 @@ function getAllMessages(lang: string, filter = (message: string, key: string) =>
   files = files.filter(file => file.endsWith('.ts') && file !== 'index.ts').map(file => path.resolve(srcLangDir, file));
 
   const allMessages = files.map(file => {
-    const { default: messages } = require(file);
+    const { default: messages } = require(file.replace('.ts',''));
     const fileNameWithoutExt = path.basename(file).split('.')[0];
     const flattenedMessages = {};
 
